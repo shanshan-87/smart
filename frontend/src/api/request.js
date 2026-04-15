@@ -4,7 +4,7 @@ import router from '@/router'
 
 // 创建axios实例
 const service = axios.create({
-  baseURL: '/api', // 接口基础路径，对应vite代理配置
+  baseURL: import.meta.env.VITE_API_URL || 'https://shanshan-87--smart-orchard-smartorchardapi-api.modal.run',
   timeout: 30000, // 超时时间30秒，适配大图片上传
   headers: {
     'Content-Type': 'application/json;charset=utf-8'
