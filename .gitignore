@@ -1,0 +1,73 @@
+# Python 虚拟环境
+venv/
+.venv/
+env/
+.env/
+backend/venv/
+backend/.venv/
+
+# Python 编译文件
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist-info/
+
+# 数据库文件
+*.db
+*.sqlite3
+*.sqlite
+
+# YOLO 模型权重（过大，不适合 Git）
+*.pt
+*.pth
+*.weights
+*.onnx
+*.tflite
+
+# 图片结果（积累的检测输出图）
+static/results/
+backend/static/results/
+
+# ultralytics YOLO 库源码（应通过 pip install ultralytics 安装）
+backend/ultralytics/
+
+# 上传的用户图片
+static/uploads/
+
+# Node.js
+node_modules/
+frontend/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 构建输出
+dist/
+build/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 日志
+*.log
+logs/
+
+# 环境变量
+.env
+.env.local
+.env.*.local
