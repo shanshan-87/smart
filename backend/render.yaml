@@ -1,0 +1,41 @@
+# =========================================
+# SmartOrchard Backend - Render 部署配置
+# =========================================
+# 部署地址：https://render.com
+# 1. 连接 GitHub 仓库
+# 2. 创建 Web Service，指向 backend 分支
+# 3. 设置以下环境变量
+# =========================================
+
+# —— Render 会自动识别这些设置 ——
+
+# Python 版本
+pythonVersion: "3.11"
+
+# 启动命令（使用 backend/start.sh）
+buildCommand: pip install -r requirements.txt
+startCommand: bash start.sh
+
+# 环境变量（手动在 Render Dashboard 设置）
+envVars:
+  - key: DATABASE_URL
+    value: sqlite:///./app.db
+
+  # JWT 密钥（务必改成随机字符串！）
+  - key: SECRET_KEY
+    value: "smart-orchard-change-this-in-production"
+
+  - key: ALGORITHM
+    value: "HS256"
+
+  - key: ACCESS_TOKEN_EXPIRE_MINUTES
+    value: "1440"
+
+  # 生产模式
+  - key: ENVIRONMENT
+    value: "production"
+
+# —— 资源设置（Render Dashboard 手动配置）——
+# Plan: Free
+# Region: Singapore（亚洲节点，延迟更低）
+# Branch: master

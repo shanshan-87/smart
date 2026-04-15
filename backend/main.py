@@ -15,7 +15,12 @@ from PIL import Image, ImageDraw, ImageFont
 # -------------------------------------------------------
 # 中文文字绘制工具（OpenCV 不支持中文，改用 PIL 绘制后转回）
 # -------------------------------------------------------
-_FONT_PATH = r"C:\Windows\Fonts\simhei.ttf"
+# 字体路径：优先使用 Render Linux 环境的字体，回退到 Windows
+# 生产环境会下载 SimHei.ttf 到 backend/fonts/
+_FONT_PATH = os.environ.get("FONT_PATH",
+    r"/opt/render/project/src/backend/fonts/SimHei.ttf"
+    if os.path.exists("/opt/render/project/src/backend/fonts/SimHei.ttf")
+    else r"C:\Windows\Fonts\simhei.ttf")
 
 def cv2_put_chinese_text(img: np.ndarray, text: str, org: tuple,
                           font_size: int = 20, color: tuple = (0, 255, 0),
