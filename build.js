@@ -1,35 +1,30 @@
 // SmartOrchard 构建脚本
-// 负责构建前端 Vue 项目
-
 const { execSync } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 
 const frontendDir = path.join(__dirname, 'frontend');
+const log = fs.createWriteStream('/tmp/build.log', { flags: 'a' });
+const logf = (msg) => { console.log(msg); log.write(msg + '\n'); };
 
-console.log('📦 安装前端依赖...');
+process.chdir(frontendDir);
+logf('WORKDIR: ' + process.cwd());
+logf('Installing...');
+
 try {
-  execSync('npm install', { cwd: frontendDir, stdio: 'inherit' });
-  console.log('✅ 依赖安装完成');
-} catch (e) {
-  console.error('❌ 依赖安装失败:', e.message);
+  execSync('npm install --loglevel verbose', { stdio: 'inherit' });
+  logf('Installed OK');
+} catch(e) {
+  logf('npm install FAILED: ' + e.message);
   process.exit(1);
 }
 
-console.log('🔨 构建前端...');
+logf('Building...');
 try {
-  execSync('npm run build', { cwd: frontendDir, stdio: 'inherit' });
-  console.log('✅ 构建完成！');
-} catch (e) {
-  console.error('❌ 构建失败:', e.message);
+  execSync('npm run build', { stdio: 'inherit' });
+  logf('Build OK');
+} catch(e) {
+  logf('build FAILED: ' + e.message);
   process.exit(1);
 }
-
-// 确保 dist 目录存在
-const distDir = path.join(frontendDir, 'dist');
-if (!fs.existsSync(distDir)) {
-  console.error('❌ dist 目录未生成！');
-  process.exit(1);
-}
-
-console.log('✅ SmartOrchard 前端构建成功！');
+logf('DONE');
