@@ -52,10 +52,7 @@ IMAGE = (
 # ----------------------------------------
 # 3. 持久化存储卷（存放数据库、用户上传文件）
 # ----------------------------------------
-volume = modal.Volume.from_name(
-    "smart-orchard-data",
-    create=True,
-)
+volume = modal.Volume.from_name("smart-orchard-data")
 
 # 字体下载（避免 OpenCV 不支持中文）
 FONT_URL = "https://github.com/StellarCN/scp_zh/raw/master/fonts/SimHei.ttf"
