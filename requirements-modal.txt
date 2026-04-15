@@ -1,0 +1,30 @@
+# Modal.com 部署专用依赖
+# 仅在 Modal 云端使用（本地开发仍用 requirements.txt）
+# pip install -r requirements-modal.txt
+
+# Core ML
+torch==2.1.0
+torchvision==0.16.0
+
+# YOLO
+ultralytics==8.3.0
+
+# Image processing
+opencv-python==4.9.0.80
+pillow==10.3.0
+
+# Web framework
+fastapi==0.110.0
+uvicorn[standard]==0.29.0
+python-multipart==0.0.9
+
+# Database
+sqlalchemy==2.0.29
+
+# Auth
+passlib[bcrypt]==1.7.4
+python-jose[cryptography]==3.3.0
+
+# Utils
+numpy==1.26.4
+pydantic==2.12.5
